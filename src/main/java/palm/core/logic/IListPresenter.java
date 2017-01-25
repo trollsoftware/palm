@@ -19,17 +19,17 @@ package palm.core.logic;
 
 import jcomposition.api.annotations.Bind;
 import jcomposition.api.annotations.Composition;
-import palm.core.components.IItemComponent;
-import palm.core.components.IPagerComponent;
-import palm.core.components.IPresenterComponent;
-import palm.core.components.IRouterComponent;
-import palm.core.interfaces.IPagerViewCallbacks;
-import palm.core.interfaces.RouterBase;
+import palm.core.components.interfaces.IItemComponent;
+import palm.core.components.interfaces.IPagerComponent;
+import palm.core.components.interfaces.IPresenterComponent;
+import palm.core.components.interfaces.IRouterComponent;
+import palm.core.interfaces.viewcallbacks.IPagerViewCallbacks;
+import palm.core.interfaces.IRouterBase;
 
 @Bind(ListPresenter.class)
 @Composition(name = "ListPresenterGenerated")
 public interface IListPresenter extends
         IPresenterComponent<IPagerViewCallbacks>,
         IPagerComponent<IPagerViewCallbacks, IItemComponent>,
-        IRouterComponent<RouterBase> {
+        IRouterComponent<IRouterBase> {
 }

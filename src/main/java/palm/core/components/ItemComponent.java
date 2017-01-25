@@ -17,11 +17,8 @@
 package palm.core.components;
 
 
-import palm.core.interfaces.ViewCallbacks;
+import palm.core.interfaces.viewcallbacks.IViewCallbacks;
 
-public class ItemComponent<TView extends ViewCallbacks> extends ItemPresenterGenerated<TView> {
-    @Override
-    public void onItemSelect(int index) {
+public class ItemComponent<TView extends IViewCallbacks> extends ItemPresenterGenerated<TView> {
 
-    }
 }

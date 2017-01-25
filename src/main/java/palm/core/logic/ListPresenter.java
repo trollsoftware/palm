@@ -17,17 +17,8 @@
 package palm.core.logic;
 
 
-import palm.core.interfaces.IPagerViewCallbacks;
+import palm.core.interfaces.viewcallbacks.IPagerViewCallbacks;
 
 public class ListPresenter extends ListPresenterGenerated {
 
-    @Override
-    protected void onLoadPage(int page) {
-
-    }
-
-    @Override
-    protected void onTakeView(IPagerViewCallbacks view) {
-        super.onTakeView(view);
-    }
 }

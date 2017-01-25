@@ -27,6 +27,24 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 
+sourceSets {
+    generated {
+        java {
+            srcDir 'src/main/generated'
+        }
+    }
+}
+
+compileJava {
+    options.compilerArgs += [
+            '-s', 'src/main/generated'
+    ]
+
+    doFirst {
+        file('src/main/generated').mkdir()
+    }
+}
+
 dependencies {
     apt 'com.github.trollsoftware.jcomposition:processor:1.1.1'
     compile 'com.github.trollsoftware.jcomposition:api:1.1.1'

@@ -17,9 +17,10 @@
 package palm.core.components;
 
 import jcomposition.api.annotations.ShareProtected;
-import palm.core.interfaces.ViewCallbacks;
+import palm.core.components.interfaces.IViewComponent;
+import palm.core.interfaces.viewcallbacks.IViewCallbacks;
 
-public class ViewComponent<TView extends ViewCallbacks> implements IViewComponent<TView> {
+public class ViewComponent<TView extends IViewCallbacks> implements IViewComponent<TView> {
     private TView view;
 
     @Override

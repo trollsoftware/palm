@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package palm.core.interfaces;
+package palm.core.interfaces.viewcallbacks;
 
-public interface ViewCallbacks {
+
+public interface IPagerViewCallbacks extends ICollectionViewCallbacks {
+    void onPageLoaded();
 }

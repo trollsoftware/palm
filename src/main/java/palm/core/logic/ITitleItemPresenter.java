@@ -19,10 +19,10 @@ package palm.core.logic;
 
 import jcomposition.api.annotations.Bind;
 import jcomposition.api.annotations.Composition;
-import palm.core.components.IItemComponent;
-import palm.core.interfaces.TitleItemViewCallbacks;
+import palm.core.components.interfaces.IItemComponent;
+import palm.core.interfaces.viewcallbacks.ITitleItemViewCallbacks;
 
 @Bind(TitleItemPresenter.class)
 @Composition(name = "TitlePresenterGenerated")
-public interface ITitleItemPresenter extends IItemComponent<TitleItemViewCallbacks> {
+public interface ITitleItemPresenter extends IItemComponent<ITitleItemViewCallbacks> {
 }

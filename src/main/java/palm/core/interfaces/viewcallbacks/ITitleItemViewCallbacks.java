@@ -14,18 +14,9 @@
  * limitations under the License.
  */
 
-package palm.core.components;
+package palm.core.interfaces.viewcallbacks;
 
-import jcomposition.api.annotations.Bind;
-import palm.core.interfaces.RouterBase;
 
-@Bind(RouterComponent.class)
-public interface IRouterComponent<TRouter extends RouterBase> {
-    TRouter getRouter();
-
-    boolean hasRouter();
-
-    void takeRouter(TRouter router);
-
-    void dropRouter(TRouter router);
+public interface ITitleItemViewCallbacks extends IViewCallbacks {
+    void getText();
 }

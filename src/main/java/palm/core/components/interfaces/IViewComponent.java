@@ -14,7 +14,19 @@
  * limitations under the License.
  */
 
-package palm.core.interfaces;
+package palm.core.components.interfaces;
 
-public interface RouterBase {
+import jcomposition.api.annotations.Bind;
+import palm.core.components.ViewComponent;
+import palm.core.interfaces.viewcallbacks.IViewCallbacks;
+
+@Bind(ViewComponent.class)
+public interface IViewComponent<TView extends IViewCallbacks> {
+    TView getView();
+
+    boolean hasView();
+
+    void takeView(TView view);
+
+    void dropView(TView view);
 }

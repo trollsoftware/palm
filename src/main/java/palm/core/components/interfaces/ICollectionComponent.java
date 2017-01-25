@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package palm.core.components;
+package palm.core.components.interfaces;
 
 
 import jcomposition.api.annotations.Bind;
-import palm.core.interfaces.ICollectionViewCallbacks;
+import palm.core.components.CollectionComponent;
+import palm.core.interfaces.viewcallbacks.ICollectionViewCallbacks;
 
 import java.util.List;
 

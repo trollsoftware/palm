@@ -17,30 +17,12 @@
 package palm.core.components;
 
 import jcomposition.api.annotations.ShareProtected;
-import palm.core.interfaces.IPagerViewCallbacks;
+import palm.core.components.interfaces.IItemComponent;
+import palm.core.interfaces.viewcallbacks.IPagerViewCallbacks;
 
 public abstract class PagerComponent<V extends IPagerViewCallbacks, I extends IItemComponent>
         extends PagerComponentGenerated<V, I> {
-    protected static final int DEFAULT_PAGE_SIZE = 10;
 
-    @Override
-    public int getPageSize() {
-        return DEFAULT_PAGE_SIZE;
-    }
-
-    @Override
-    public void loadNextPage() {
-        setLoading(true);
-
-        if (getItems().size() % getPageSize() != 0) {
-            setLoading(false);
-            if (hasView()) {
-                getView().onPageLoaded();
-            }
-            return;
-        }
-        onLoadPage(getItems().size() / getPageSize() + 1);
-    }
 
     @ShareProtected
     protected abstract void onLoadPage(int page);
