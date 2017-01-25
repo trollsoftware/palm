@@ -16,5 +16,7 @@
 
 package palm.core.interfaces;
 
-public interface IRouterBase {
+
+public interface TitleItemViewCallbacks extends ViewCallbacks {
+    void getText();
 }

@@ -16,8 +16,16 @@
 
 package palm.core.components;
 
-import palm.core.interfaces.viewcallbacks.IViewCallbacks;
+import palm.core.interfaces.ViewCallbacks;
 
-public class PresenterComponent<TView extends IViewCallbacks> extends PresenterGenerated<TView> {
+public class PresenterComponent<TView extends ViewCallbacks> extends PresenterGenerated<TView> {
+    @Override
+    public void finish() {
 
+    }
+
+    @Override
+    public void restore() {
+
+    }
 }

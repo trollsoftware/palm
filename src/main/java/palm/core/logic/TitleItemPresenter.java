@@ -17,8 +17,16 @@
 package palm.core.logic;
 
 
-import palm.core.interfaces.viewcallbacks.ITitleItemViewCallbacks;
+import palm.core.interfaces.TitleItemViewCallbacks;
 
 public class TitleItemPresenter extends TitlePresenterGenerated {
+    @Override
+    public void onItemSelect(int index) {
 
+    }
+
+    @Override
+    protected void onTakeView(TitleItemViewCallbacks view) {
+        super.onTakeView(view);
+    }
 }

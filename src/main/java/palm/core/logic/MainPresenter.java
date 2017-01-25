@@ -16,7 +16,11 @@
 
 package palm.core.logic;
 
-import palm.core.interfaces.viewcallbacks.ICollectionViewCallbacks;
+import palm.core.interfaces.ICollectionViewCallbacks;
 
 public class MainPresenter extends MainPresenterGenerated {
+    @Override
+    protected void onTakeView(ICollectionViewCallbacks view) {
+        super.onTakeView(view);
+    }
 }

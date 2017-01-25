@@ -14,19 +14,7 @@
  * limitations under the License.
  */
 
-package palm.core.components.interfaces;
+package palm.core.interfaces;
 
-import jcomposition.api.annotations.Bind;
-import palm.core.components.ViewComponent;
-import palm.core.interfaces.viewcallbacks.IViewCallbacks;
-
-@Bind(ViewComponent.class)
-public interface IViewComponent<TView extends IViewCallbacks> {
-    TView getView();
-
-    boolean hasView();
-
-    void takeView(TView view);
-
-    void dropView(TView view);
+public interface RouterBase {
 }

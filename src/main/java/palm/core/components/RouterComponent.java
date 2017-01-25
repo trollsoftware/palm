@@ -16,10 +16,9 @@
 
 package palm.core.components;
 
-import palm.core.components.interfaces.IRouterComponent;
-import palm.core.interfaces.IRouterBase;
+import palm.core.interfaces.RouterBase;
 
-public class RouterComponent<TRouter extends IRouterBase> implements IRouterComponent<TRouter> {
+public class RouterComponent<TRouter extends RouterBase> implements IRouterComponent<TRouter> {
     private TRouter router;
 
     @Override

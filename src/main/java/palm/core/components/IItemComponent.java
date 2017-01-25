@@ -14,19 +14,15 @@
  * limitations under the License.
  */
 
-package palm.core.components.interfaces;
+package palm.core.components;
+
 
 import jcomposition.api.annotations.Bind;
-import palm.core.components.RouterComponent;
-import palm.core.interfaces.IRouterBase;
+import jcomposition.api.annotations.Composition;
+import palm.core.interfaces.ViewCallbacks;
 
-@Bind(RouterComponent.class)
-public interface IRouterComponent<TRouter extends IRouterBase> {
-    TRouter getRouter();
-
-    boolean hasRouter();
-
-    void takeRouter(TRouter router);
-
-    void dropRouter(TRouter router);
+@Bind(ItemComponent.class)
+@Composition(name = "ItemPresenterGenerated")
+public interface IItemComponent<TView extends ViewCallbacks> extends IPresenterComponent<TView> {
+    void onItemSelect(int index);
 }
