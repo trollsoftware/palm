@@ -14,27 +14,11 @@
  * limitations under the License.
  */
 
-package palm.core.components;
+package palm.core.interfaces.viewcallbacks;
 
-
-import jcomposition.api.annotations.Bind;
-import palm.core.interfaces.ICollectionViewCallbacks;
-
-import java.util.List;
-
-@Bind(CollectionComponent.class)
-public interface ICollectionComponent<TView extends ICollectionViewCallbacks, TItem extends IItemComponent> {
-    TItem getItemAt(int index);
-
-    List<TItem> getItems();
-
-    void setItems(List<TItem> items);
-
-    boolean isLoading();
-
-    void setLoading(boolean isLoading);
-
-    void onItemSelected(int index);
-
+/**
+ * ViewCallbacks for Presenter contains collection
+ */
+public interface ICollectionViewCallbacks extends IViewCallbacks {
     void reloadData();
 }

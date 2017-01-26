@@ -14,9 +14,31 @@
  * limitations under the License.
  */
 
-package palm.core.interfaces;
+package palm.core.components.interfaces;
 
 
-public interface IAdapter {
+import jcomposition.api.annotations.Bind;
+import palm.core.components.CollectionComponent;
+import palm.core.interfaces.viewcallbacks.ICollectionViewCallbacks;
+
+import java.util.List;
+
+/**
+ * Contains logic for items collection
+ */
+@Bind(CollectionComponent.class)
+public interface ICollectionComponent<TView extends ICollectionViewCallbacks, TItem extends IItemComponent> {
+    TItem getItemAt(int index);
+
+    List<TItem> getItems();
+
+    void setItems(List<TItem> items);
+
+    boolean isLoading();
+
+    void setLoading(boolean isLoading);
+
+    void onItemSelected(int index);
+
     void reloadData();
 }

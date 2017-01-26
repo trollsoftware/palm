@@ -16,35 +16,108 @@
 
 package palm.core.components;
 
-import jcomposition.api.annotations.ShareProtected;
-import palm.core.interfaces.ViewCallbacks;
+import java.lang.ref.WeakReference;
 
-public class ViewComponent<TView extends ViewCallbacks> implements IViewComponent<TView> {
-    private TView view;
+import jcomposition.api.annotations.ShareProtected;
+import palm.core.Preconditions;
+import palm.core.components.interfaces.IViewComponent;
+import palm.core.interfaces.viewcallbacks.IViewCallbacks;
+
+public class ViewComponent<TView extends IViewCallbacks> implements IViewComponent<TView> {
+    private WeakReference<TView> mViewRef;
+    private boolean isFirstTake = true;
+    private boolean isRestored = true;
 
     @Override
     public TView getView() {
-        return this.view;
+        return mViewRef == null ? null : mViewRef.get();
     }
 
     @Override
     public boolean hasView() {
-        return this.view != null;
+        return mViewRef != null && mViewRef.get() != null;
     }
 
     @Override
     public void takeView(TView view) {
-        this.view = view;
-        onTakeView(view);
+        Preconditions.checkNotNull(view, "view");
+
+        final TView currentView = getView();
+        if (currentView != view) {
+            if (currentView != null) {
+                dropView(currentView);
+            }
+            assignView(view);
+            if (isRestored) {
+                onRestore(view);
+                isRestored = false;
+            }
+            if (isFirstTake) {
+                onFirstTake(view);
+                isFirstTake = false;
+            }
+            onTakeView(view);
+        }
     }
 
     @Override
     public void dropView(TView view) {
+        Preconditions.checkNotNull(view, "view");
 
+        if (getView() == view) {
+            onDropView(view);
+            releaseView();
+        }
+    }
+
+    @Override
+    public void restore() {
+        this.isRestored = true;
+    }
+
+    void assignView(TView view) {
+        mViewRef = new WeakReference<TView>(view);
+    }
+
+    void releaseView() {
+        if (mViewRef != null) {
+            mViewRef.clear();
+            mViewRef = null;
+        }
     }
 
     @ShareProtected
+    protected void onFirstTake(TView view) {
+    }
+
+    /**
+     * Called after view is taken.
+     *
+     * @param view
+     *     attached to presenter
+     *
+     * @see #takeView(IViewCallbacks)
+     */
+    @ShareProtected
     protected void onTakeView(TView view) {
-        System.out.println("ViewComponent - OnTakeView");
+    }
+
+    /**
+     * Called after presenter is restored from backstack
+     */
+    @ShareProtected
+    protected void onRestore(TView view) {
+    }
+
+    /**
+     * Called before view is dropped.
+     *
+     * @param view
+     *     view is going to be dropped
+     *
+     * @see #dropView(IViewCallbacks)
+     */
+    @ShareProtected
+    protected void onDropView(TView view) {
     }
 }

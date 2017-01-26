@@ -16,16 +16,16 @@
 
 package palm.core.components;
 
-import palm.core.interfaces.ViewCallbacks;
+import jcomposition.api.annotations.ShareProtected;
+import palm.core.components.interfaces.PresenterGenerated;
+import palm.core.interfaces.viewcallbacks.IViewCallbacks;
 
-public class PresenterComponent<TView extends ViewCallbacks> extends PresenterGenerated<TView> {
+public class PresenterComponent<TView extends IViewCallbacks> extends PresenterGenerated<TView> {
     @Override
     public void finish() {
-
+        onFinish();
     }
 
-    @Override
-    public void restore() {
-
-    }
+    @ShareProtected
+    protected void onFinish() {}
 }

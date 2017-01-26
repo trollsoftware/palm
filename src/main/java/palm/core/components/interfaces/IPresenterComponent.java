@@ -14,7 +14,21 @@
  * limitations under the License.
  */
 
-package palm.core.interfaces;
+package palm.core.components.interfaces;
 
-public interface ViewCallbacks {
+import jcomposition.api.annotations.Bind;
+import jcomposition.api.annotations.Composition;
+import palm.core.components.PresenterComponent;
+import palm.core.interfaces.viewcallbacks.IViewCallbacks;
+
+/**
+ * Contains logic for preparing content for display and for reacting to user inputs
+ */
+@Bind(PresenterComponent.class)
+@Composition(name = "PresenterGenerated")
+public interface IPresenterComponent<TView extends IViewCallbacks> extends IViewComponent<TView> {
+    /**
+     * Called when view is detached from screen
+     */
+    void finish();
 }

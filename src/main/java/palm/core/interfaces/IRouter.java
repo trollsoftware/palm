@@ -14,18 +14,10 @@
  * limitations under the License.
  */
 
-package palm.core.components;
+package palm.core.interfaces;
 
-import jcomposition.api.annotations.Bind;
-import palm.core.interfaces.RouterBase;
-
-@Bind(RouterComponent.class)
-public interface IRouterComponent<TRouter extends RouterBase> {
-    TRouter getRouter();
-
-    boolean hasRouter();
-
-    void takeRouter(TRouter router);
-
-    void dropRouter(TRouter router);
+/**
+ * Base router interface contains navigation logic
+*/
+public interface IRouter {
 }

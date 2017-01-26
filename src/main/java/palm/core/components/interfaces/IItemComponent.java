@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package palm.core.components;
+package palm.core.components.interfaces;
+
 
 import jcomposition.api.annotations.Bind;
 import jcomposition.api.annotations.Composition;
-import palm.core.interfaces.ViewCallbacks;
+import palm.core.components.ItemComponent;
+import palm.core.interfaces.viewcallbacks.IViewCallbacks;
 
-@Bind(PresenterComponent.class)
-@Composition(name = "PresenterGenerated")
-public interface IPresenterComponent<TView extends ViewCallbacks> extends IViewComponent<TView> {
-    void finish();
-
-    void restore();
+/**
+ * Collection item for {@link palm.core.components.CollectionComponent}
+ */
+@Bind(ItemComponent.class)
+@Composition(name = "ItemPresenterGenerated")
+public interface IItemComponent<TView extends IViewCallbacks> extends IPresenterComponent<TView> {
+    void onItemSelect(int index);
 }

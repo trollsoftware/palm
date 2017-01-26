@@ -17,9 +17,13 @@
 package palm.core.logic;
 
 
-import palm.core.interfaces.IPagerViewCallbacks;
+import palm.core.interfaces.viewcallbacks.IPagerViewCallbacks;
 
 public class ListPresenter extends ListPresenterGenerated {
+    @Override
+    public int getPageSize() {
+        return 10;
+    }
 
     @Override
     protected void onLoadPage(int page) {

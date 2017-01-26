@@ -18,17 +18,16 @@ package palm.core.logic;
 
 import jcomposition.api.annotations.Bind;
 import jcomposition.api.annotations.Composition;
-import palm.core.components.ICollectionComponent;
-import palm.core.components.IItemComponent;
-import palm.core.components.IPresenterComponent;
-import palm.core.components.IRouterComponent;
-import palm.core.interfaces.ICollectionViewCallbacks;
-import palm.core.interfaces.RouterBase;
+import palm.core.components.interfaces.ICollectionComponent;
+import palm.core.components.interfaces.IPresenterComponent;
+import palm.core.components.interfaces.IRouterComponent;
+import palm.core.interfaces.viewcallbacks.ICollectionViewCallbacks;
+import palm.core.interfaces.IRouter;
 
 @Bind(MainPresenter.class)
 @Composition(name = "MainPresenterGenerated")
 public interface IMainPresenter extends
         IPresenterComponent<ICollectionViewCallbacks>,
-        ICollectionComponent<ICollectionViewCallbacks, IItemComponent>,
-        IRouterComponent<RouterBase> {
+        ICollectionComponent<ICollectionViewCallbacks, TitleItemPresenter>,
+        IRouterComponent<IRouter> {
 }

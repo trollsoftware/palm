@@ -16,8 +16,11 @@
 
 package palm.core.components;
 
-import palm.core.interfaces.ICollectionViewCallbacks;
-import palm.core.interfaces.ViewCallbacks;
+import palm.core.components.interfaces.ICollectionComponent;
+import palm.core.components.interfaces.IItemComponent;
+import palm.core.components.interfaces.IPresenterComponent;
+import palm.core.components.interfaces.IViewComponent;
+import palm.core.interfaces.viewcallbacks.ICollectionViewCallbacks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,11 +64,7 @@ public abstract class CollectionComponent<TView extends ICollectionViewCallbacks
     @Override
     public void reloadData() {
         if (hasView()) {
-            getView().getListAdapter().reloadData();
+            getView().reloadData();
         }
-    }
-
-    private void lol(ViewCallbacks d) {
-
     }
 }

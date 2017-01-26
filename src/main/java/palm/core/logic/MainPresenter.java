@@ -16,7 +16,7 @@
 
 package palm.core.logic;
 
-import palm.core.interfaces.ICollectionViewCallbacks;
+import palm.core.interfaces.viewcallbacks.ICollectionViewCallbacks;
 
 public class MainPresenter extends MainPresenterGenerated {
     @Override

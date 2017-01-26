@@ -14,18 +14,23 @@
  * limitations under the License.
  */
 
-package palm.core.components;
+package palm.core.components.interfaces;
 
 import jcomposition.api.annotations.Bind;
-import palm.core.interfaces.ViewCallbacks;
+import jcomposition.api.annotations.Composition;
+import palm.core.components.PagerComponent;
+import palm.core.components.interfaces.ICollectionComponent;
+import palm.core.components.interfaces.IItemComponent;
+import palm.core.interfaces.viewcallbacks.IPagerViewCallbacks;
 
-@Bind(ViewComponent.class)
-public interface IViewComponent<TView extends ViewCallbacks> {
-    TView getView();
+/**
+ * Contains logic for items page-loading
+ */
+@Bind(PagerComponent.class)
+@Composition(name = "PagerComponentGenerated")
+public interface IPagerComponent<V extends IPagerViewCallbacks, I extends IItemComponent>
+        extends ICollectionComponent<V, I> {
+    int getPageSize();
 
-    boolean hasView();
-
-    void takeView(TView view);
-
-    void dropView(TView view);
+    void loadNextPage();
 }

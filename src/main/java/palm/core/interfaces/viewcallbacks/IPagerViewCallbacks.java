@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package palm.core.interfaces;
+package palm.core.interfaces.viewcallbacks;
 
-
+/**
+ * ViewCallbacks for Presenter contains page-loading
+ */
 public interface IPagerViewCallbacks extends ICollectionViewCallbacks {
     void onPageLoaded();
 }
