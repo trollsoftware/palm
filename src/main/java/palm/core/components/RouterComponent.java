@@ -16,28 +16,78 @@
 
 package palm.core.components;
 
-import palm.core.interfaces.RouterBase;
+import java.lang.ref.WeakReference;
 
-public class RouterComponent<TRouter extends RouterBase> implements IRouterComponent<TRouter> {
-    private TRouter router;
+import jcomposition.api.annotations.ShareProtected;
+import palm.core.Optional;
+import palm.core.Preconditions;
+import palm.core.components.interfaces.IRouterComponent;
+import palm.core.interfaces.IRouter;
+
+public class RouterComponent<TRouter extends IRouter> implements IRouterComponent<TRouter> {
+    private WeakReference<TRouter> mRouterRef;
 
     @Override
-    public TRouter getRouter() {
-        return this.router;
-    }
-
-    @Override
-    public boolean hasRouter() {
-        return this.router != null;
+    public Optional<TRouter> getRouter() {
+        return mRouterRef == null ? null : Optional.of(mRouterRef.get());
     }
 
     @Override
     public void takeRouter(TRouter router) {
-        this.router = router;
+        Preconditions.checkNotNull(router);
+
+        final Optional<TRouter> optional = getRouter();
+        if (optional.orNull() != router) {
+            if (optional.isPresent()) {
+                dropRouter(optional.get());
+            }
+            assignRouter(router);
+            onTakeRouter(router);
+        }
     }
 
     @Override
     public void dropRouter(TRouter router) {
+        Preconditions.checkNotNull(router);
 
+        if (getRouter().orNull() == router) {
+            onDropRouter(router);
+            releaseRouter();
+        }
+    }
+
+    void assignRouter(TRouter router) {
+        mRouterRef = new WeakReference<TRouter>(router);
+    }
+
+    void releaseRouter() {
+        if (mRouterRef != null) {
+            mRouterRef.clear();
+            mRouterRef = null;
+        }
+    }
+
+    /**
+     * Called after router is taken.
+     *
+     * @param router
+     *     router attached to this presenter
+     *
+     * @see #takeRouter(IRouter)
+     */
+    @ShareProtected
+    protected void onTakeRouter(TRouter router) {
+    }
+
+    /**
+     * Called before router is dropped.
+     *
+     * @param router
+     *     router is going to be dropped
+     *
+     * @see #dropRouter(IRouter)
+     */
+    @ShareProtected
+    protected void onDropRouter(TRouter router) {
     }
 }

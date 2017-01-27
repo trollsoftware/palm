@@ -14,14 +14,11 @@
  * limitations under the License.
  */
 
-package palm.core.components;
+package palm.core.interfaces.viewcallbacks;
 
-
-import palm.core.interfaces.ViewCallbacks;
-
-public class ItemComponent<TView extends ViewCallbacks> extends ItemPresenterGenerated<TView> {
-    @Override
-    public void onItemSelect(int index) {
-
-    }
+/**
+ * Displays data from {@link palm.core.logic.TitleItemPresenter} and relays user input back to the TitleItemPresenter
+ */
+public interface ITextItemViewCallbacks extends IViewCallbacks {
+    void getText();
 }

@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
-package palm.core.interfaces;
+package palm.core.components.interfaces;
 
-public interface ViewCallbacks {
+
+import palm.core.interfaces.viewcallbacks.IViewCallbacks;
+
+/**
+ * Collection item for {@link palm.core.components.CollectionComponent}
+ */
+public interface IItemComponent<TView extends IViewCallbacks> {
+    void onSelect(int index);
 }

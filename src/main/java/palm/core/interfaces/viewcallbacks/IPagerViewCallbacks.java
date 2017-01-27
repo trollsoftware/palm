@@ -14,15 +14,11 @@
  * limitations under the License.
  */
 
-package palm.core.logic;
+package palm.core.interfaces.viewcallbacks;
 
-
-import jcomposition.api.annotations.Bind;
-import jcomposition.api.annotations.Composition;
-import palm.core.components.IItemComponent;
-import palm.core.interfaces.TitleItemViewCallbacks;
-
-@Bind(TitleItemPresenter.class)
-@Composition(name = "TitlePresenterGenerated")
-public interface ITitleItemPresenter extends IItemComponent<TitleItemViewCallbacks> {
+/**
+ * ViewCallbacks for Presenter contains page-loading
+ */
+public interface IPagerViewCallbacks extends ICollectionViewCallbacks {
+    void onPageLoaded();
 }

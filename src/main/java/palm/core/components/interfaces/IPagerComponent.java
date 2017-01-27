@@ -14,18 +14,23 @@
  * limitations under the License.
  */
 
-package palm.core.components;
+package palm.core.components.interfaces;
 
 import jcomposition.api.annotations.Bind;
-import palm.core.interfaces.RouterBase;
+import jcomposition.api.annotations.Composition;
+import palm.core.components.PagerComponent;
+import palm.core.components.interfaces.ICollectionComponent;
+import palm.core.components.interfaces.IItemComponent;
+import palm.core.interfaces.viewcallbacks.IPagerViewCallbacks;
 
-@Bind(RouterComponent.class)
-public interface IRouterComponent<TRouter extends RouterBase> {
-    TRouter getRouter();
+/**
+ * Contains logic for items page-loading
+ */
+@Bind(PagerComponent.class)
+@Composition(name = "PagerComponentGenerated")
+public interface IPagerComponent<V extends IPagerViewCallbacks, I extends IItemComponent & IPresenterComponent>
+        extends ICollectionComponent<V, I> {
+    int getPageSize();
 
-    boolean hasRouter();
-
-    void takeRouter(TRouter router);
-
-    void dropRouter(TRouter router);
+    void loadNextPage();
 }

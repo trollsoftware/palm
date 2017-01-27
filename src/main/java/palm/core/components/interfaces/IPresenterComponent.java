@@ -14,27 +14,21 @@
  * limitations under the License.
  */
 
-package palm.core.components;
-
+package palm.core.components.interfaces;
 
 import jcomposition.api.annotations.Bind;
-import palm.core.interfaces.ICollectionViewCallbacks;
+import jcomposition.api.annotations.Composition;
+import palm.core.components.PresenterComponent;
+import palm.core.interfaces.viewcallbacks.IViewCallbacks;
 
-import java.util.List;
-
-@Bind(CollectionComponent.class)
-public interface ICollectionComponent<TView extends ICollectionViewCallbacks, TItem extends IItemComponent> {
-    TItem getItemAt(int index);
-
-    List<TItem> getItems();
-
-    void setItems(List<TItem> items);
-
-    boolean isLoading();
-
-    void setLoading(boolean isLoading);
-
-    void onItemSelected(int index);
-
-    void reloadData();
+/**
+ * Contains logic for preparing content for display and for reacting to user inputs
+ */
+@Bind(PresenterComponent.class)
+@Composition(name = "PresenterGenerated")
+public interface IPresenterComponent<TView extends IViewCallbacks> extends IViewComponent<TView> {
+    /**
+     * Called when view is detached from screen
+     */
+    void finish();
 }

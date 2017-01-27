@@ -16,7 +16,8 @@
 
 package palm.core.interfaces;
 
-
-public interface IPagerViewCallbacks extends ICollectionViewCallbacks {
-    void onPageLoaded();
+/**
+ * Base router interface contains navigation logic
+*/
+public interface IRouter {
 }
