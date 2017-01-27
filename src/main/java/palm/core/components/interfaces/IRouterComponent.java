@@ -17,6 +17,7 @@
 package palm.core.components.interfaces;
 
 import jcomposition.api.annotations.Bind;
+import palm.core.Optional;
 import palm.core.components.RouterComponent;
 import palm.core.interfaces.IRouter;
 
@@ -28,20 +29,10 @@ public interface IRouterComponent<TRouter extends IRouter> {
     /**
      * Returns the router managed by this presenter, or {@code null} if {@link #takeRouter} has never been called, or
      * after {@link #dropRouter}.
-     * <p>
-     * You should always call {@link #hasRouter} to check if the router is taken to avoid NullPointerExceptions.
      *
      * @return {@code null}, if router is not taken, otherwise the concrete router instance.
      */
-    TRouter getRouter();
-
-    /**
-     * Checks if a router is attached to this presenter. You should always call this method before calling {@link
-     * #getRouter} to get the router instance.
-     *
-     * @return {@code true} if presenter has attached router
-     */
-    boolean hasRouter();
+    Optional<TRouter> getRouter();
 
     /**
      * Called to give this presenter control of a router.

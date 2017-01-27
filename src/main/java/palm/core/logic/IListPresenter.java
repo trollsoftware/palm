@@ -25,11 +25,12 @@ import palm.core.components.interfaces.IPresenterComponent;
 import palm.core.components.interfaces.IRouterComponent;
 import palm.core.interfaces.viewcallbacks.IPagerViewCallbacks;
 import palm.core.interfaces.IRouter;
+import palm.core.items.IImageItemPresenter;
 
 @Bind(ListPresenter.class)
 @Composition(name = "ListPresenterGenerated")
 public interface IListPresenter extends
         IPresenterComponent<IPagerViewCallbacks>,
-        IPagerComponent<IPagerViewCallbacks, IItemComponent>,
+        IPagerComponent<IPagerViewCallbacks, IImageItemPresenter>,
         IRouterComponent<IRouter> {
 }

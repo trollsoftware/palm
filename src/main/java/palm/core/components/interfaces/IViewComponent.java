@@ -17,6 +17,7 @@
 package palm.core.components.interfaces;
 
 import jcomposition.api.annotations.Bind;
+import palm.core.Optional;
 import palm.core.components.ViewComponent;
 import palm.core.interfaces.viewcallbacks.IViewCallbacks;
 
@@ -28,20 +29,10 @@ public interface IViewComponent<TView extends IViewCallbacks> {
     /**
      * Returns the view managed by presenter, or {@code null} if {@link #takeView} has never been called, or after
      * {@link #dropView}.
-     * <p>
-     * You should always call {@link #hasView} to check if the view is taken to avoid NullPointerExceptions.
      *
      * @return {@code null}, if view is not taken, otherwise the concrete view instance.
      */
-    TView getView();
-
-    /**
-     * Checks if a view is attached to presenter. You should always call this method before calling {@link #getView}
-     * to get the view instance.
-     *
-     * @return {@code true} if presenter has attached view
-     */
-    boolean hasView();
+    Optional<TView> getView();
 
     /**
      * Called to give presenter control of a view.

@@ -27,7 +27,7 @@ import java.util.List;
  * Contains logic for items collection
  */
 @Bind(CollectionComponent.class)
-public interface ICollectionComponent<TView extends ICollectionViewCallbacks, TItem extends IItemComponent> {
+public interface ICollectionComponent<TView extends ICollectionViewCallbacks, TItem extends IItemComponent & IPresenterComponent> {
     TItem getItemAt(int index);
 
     List<TItem> getItems();

@@ -19,6 +19,7 @@ package palm.core.components;
 import java.lang.ref.WeakReference;
 
 import jcomposition.api.annotations.ShareProtected;
+import palm.core.Optional;
 import palm.core.Preconditions;
 import palm.core.components.interfaces.IRouterComponent;
 import palm.core.interfaces.IRouter;
@@ -27,23 +28,18 @@ public class RouterComponent<TRouter extends IRouter> implements IRouterComponen
     private WeakReference<TRouter> mRouterRef;
 
     @Override
-    public TRouter getRouter() {
-        return mRouterRef == null ? null : mRouterRef.get();
-    }
-
-    @Override
-    public boolean hasRouter() {
-        return mRouterRef != null && mRouterRef.get() != null;
+    public Optional<TRouter> getRouter() {
+        return mRouterRef == null ? null : Optional.of(mRouterRef.get());
     }
 
     @Override
     public void takeRouter(TRouter router) {
-        Preconditions.checkNotNull(router, "router");
+        Preconditions.checkNotNull(router);
 
-        final TRouter currentRouter = getRouter();
-        if (currentRouter != router) {
-            if (currentRouter != null) {
-                dropRouter(currentRouter);
+        final Optional<TRouter> optional = getRouter();
+        if (optional.orNull() != router) {
+            if (optional.isPresent()) {
+                dropRouter(optional.get());
             }
             assignRouter(router);
             onTakeRouter(router);
@@ -52,9 +48,9 @@ public class RouterComponent<TRouter extends IRouter> implements IRouterComponen
 
     @Override
     public void dropRouter(TRouter router) {
-        Preconditions.checkNotNull(router, "router");
+        Preconditions.checkNotNull(router);
 
-        if (getRouter() == router) {
+        if (getRouter().orNull() == router) {
             onDropRouter(router);
             releaseRouter();
         }

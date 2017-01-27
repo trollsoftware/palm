@@ -19,6 +19,6 @@ package palm.core.interfaces.viewcallbacks;
 /**
  * Displays data from {@link palm.core.logic.TitleItemPresenter} and relays user input back to the TitleItemPresenter
  */
-public interface ITitleItemViewCallbacks extends IViewCallbacks {
+public interface ITextItemViewCallbacks extends IViewCallbacks {
     void getText();
 }

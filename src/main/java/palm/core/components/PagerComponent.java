@@ -17,11 +17,13 @@
 package palm.core.components;
 
 import jcomposition.api.annotations.ShareProtected;
+import palm.core.Optional;
 import palm.core.components.interfaces.IItemComponent;
+import palm.core.components.interfaces.IPresenterComponent;
 import palm.core.components.interfaces.PagerComponentGenerated;
 import palm.core.interfaces.viewcallbacks.IPagerViewCallbacks;
 
-public abstract class PagerComponent<V extends IPagerViewCallbacks, I extends IItemComponent>
+public abstract class PagerComponent<V extends IPagerViewCallbacks, I extends IItemComponent & IPresenterComponent>
         extends PagerComponentGenerated<V, I> {
     @Override
     public void loadNextPage() {
@@ -29,9 +31,12 @@ public abstract class PagerComponent<V extends IPagerViewCallbacks, I extends II
 
         if (getItems().size() % getPageSize() != 0) {
             setLoading(false);
-            if (hasView()) {
-                getView().onPageLoaded();
-            }
+            getView().doNonNull(new Optional.NonNullAction<V>() {
+                @Override
+                public void action(V object) {
+                    object.onPageLoaded();
+                }
+            });
             return;
         }
         onLoadPage(getItems().size() / getPageSize() + 1);

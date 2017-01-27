@@ -23,11 +23,12 @@ import palm.core.components.interfaces.IPresenterComponent;
 import palm.core.components.interfaces.IRouterComponent;
 import palm.core.interfaces.viewcallbacks.ICollectionViewCallbacks;
 import palm.core.interfaces.IRouter;
+import palm.core.items.ITextItemPresenter;
 
 @Bind(MainPresenter.class)
 @Composition(name = "MainPresenterGenerated")
 public interface IMainPresenter extends
         IPresenterComponent<ICollectionViewCallbacks>,
-        ICollectionComponent<ICollectionViewCallbacks, TitleItemPresenter>,
+        ICollectionComponent<ICollectionViewCallbacks, ITextItemPresenter>,
         IRouterComponent<IRouter> {
 }

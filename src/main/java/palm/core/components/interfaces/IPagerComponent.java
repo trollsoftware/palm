@@ -28,7 +28,7 @@ import palm.core.interfaces.viewcallbacks.IPagerViewCallbacks;
  */
 @Bind(PagerComponent.class)
 @Composition(name = "PagerComponentGenerated")
-public interface IPagerComponent<V extends IPagerViewCallbacks, I extends IItemComponent>
+public interface IPagerComponent<V extends IPagerViewCallbacks, I extends IItemComponent & IPresenterComponent>
         extends ICollectionComponent<V, I> {
     int getPageSize();
 

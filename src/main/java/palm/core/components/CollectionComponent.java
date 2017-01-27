@@ -16,6 +16,7 @@
 
 package palm.core.components;
 
+import palm.core.Optional;
 import palm.core.components.interfaces.ICollectionComponent;
 import palm.core.components.interfaces.IItemComponent;
 import palm.core.components.interfaces.IPresenterComponent;
@@ -25,7 +26,7 @@ import palm.core.interfaces.viewcallbacks.ICollectionViewCallbacks;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CollectionComponent<TView extends ICollectionViewCallbacks, TItem extends IItemComponent>
+public abstract class CollectionComponent<TView extends ICollectionViewCallbacks, TItem extends IItemComponent & IPresenterComponent>
         implements ICollectionComponent<TView, TItem>, IViewComponent<TView> {
 
     private boolean loading;
@@ -58,13 +59,16 @@ public abstract class CollectionComponent<TView extends ICollectionViewCallbacks
 
     @Override
     public void onItemSelected(int index) {
-        getItemAt(index).onItemSelect(index);
+        getItemAt(index).onSelect(index);
     }
 
     @Override
     public void reloadData() {
-        if (hasView()) {
-            getView().reloadData();
-        }
+        getView().doNonNull(new Optional.NonNullAction<TView>() {
+            @Override
+            public void action(TView object) {
+                object.reloadData();
+            }
+        });
     }
 }

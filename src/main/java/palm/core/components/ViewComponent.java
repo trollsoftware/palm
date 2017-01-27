@@ -19,6 +19,7 @@ package palm.core.components;
 import java.lang.ref.WeakReference;
 
 import jcomposition.api.annotations.ShareProtected;
+import palm.core.Optional;
 import palm.core.Preconditions;
 import palm.core.components.interfaces.IViewComponent;
 import palm.core.interfaces.viewcallbacks.IViewCallbacks;
@@ -29,23 +30,20 @@ public class ViewComponent<TView extends IViewCallbacks> implements IViewCompone
     private boolean isRestored = true;
 
     @Override
-    public TView getView() {
-        return mViewRef == null ? null : mViewRef.get();
-    }
-
-    @Override
-    public boolean hasView() {
-        return mViewRef != null && mViewRef.get() != null;
+    public Optional<TView> getView() {
+        return (mViewRef == null
+                ? null
+                : Optional.of(mViewRef.get()));
     }
 
     @Override
     public void takeView(TView view) {
-        Preconditions.checkNotNull(view, "view");
+        Preconditions.checkNotNull(view);
 
-        final TView currentView = getView();
-        if (currentView != view) {
-            if (currentView != null) {
-                dropView(currentView);
+        final Optional<TView> optional = getView();
+        if (optional.orNull() != view) {
+            if (optional.isPresent()) {
+                dropView(optional.get());
             }
             assignView(view);
             if (isRestored) {
@@ -62,9 +60,9 @@ public class ViewComponent<TView extends IViewCallbacks> implements IViewCompone
 
     @Override
     public void dropView(TView view) {
-        Preconditions.checkNotNull(view, "view");
+        Preconditions.checkNotNull(view);
 
-        if (getView() == view) {
+        if (getView().orNull() == view) {
             onDropView(view);
             releaseView();
         }
